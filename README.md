@@ -1,4 +1,4 @@
-# Test different ways to Walk throug composite data Structures
+# Test different ways to walk throug composite data structures
 
 * simple(); 
   * Connected Objects, recursive yield Enumeration
