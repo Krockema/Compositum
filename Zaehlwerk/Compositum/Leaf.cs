@@ -21,7 +21,7 @@ namespace Zaehlwerk
             // not possible to add more to a leave
         }
 
-        public override List<Component[]> GetNext(int depth)
+        public override IEnumerable<IEnumerable<object>> GetAll(int depth)
         {
             Console.WriteLine(new String('-', depth) + _fact.Value);
             return new List<Component[]>() { new []{ this } };

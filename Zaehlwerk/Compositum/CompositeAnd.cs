@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+using Newtonsoft.Json;
+using Zaehlwerk.LinqExtension;
 
 namespace Zaehlwerk
 {
@@ -8,6 +11,7 @@ namespace Zaehlwerk
 
     {
         private Component[] _childConcatinated = new Component[0];
+        private List<Component> _children = new List<Component>();
         // Constructor
 
         public CompositeAnd(string name)
@@ -17,19 +21,31 @@ namespace Zaehlwerk
 
         public override void Add(Component c)
         {
-            //_childConcatinated.Append(c);
+            _children.Add(c);
             _childConcatinated = _childConcatinated.Concat(new []{c}).ToArray();
         }
 
-        public override List<Component[]>  GetNext(int depth)
+        public override IEnumerable<IEnumerable<object>>  GetAll(int depth)
         {
-            Console.WriteLine(new String('-', depth) + name);
-            var entries = new List<Component[]>();
-            foreach (var concat in _childConcatinated)
+            Console.WriteLine(new String('-', depth) + " AND " + name);
+            var combination = new List<List<object>>();
+            foreach (var concat in _children)
             {
-                entries.AddRange(concat.GetNext(depth + 2));
+                var entries = new List<object>();
+                foreach (var elements in concat.GetAll(depth + 2))
+                {
+                    entries.Add(elements.ToList());
+                }
+                combination.Add(entries);
+
             }
-            return entries;
+            var returns = BuildCartesian(combination);
+            return returns;
+        }
+
+        private IEnumerable<IEnumerable<object>> BuildCartesian(List<List<object>> items)
+        {
+            return Cartesian.CartesianProduct<Object>(items);
         }
     }
 }

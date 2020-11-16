@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Zaehlwerk.LinqExtension;
 
 namespace Zaehlwerk
 {
     class CompositeOr : Component
 
     {
+        private Component[] _childConcatinated = new Component[0];
         private List<Component> _children = new List<Component>();
         // Constructor
         public CompositeOr(string name)
@@ -17,21 +19,24 @@ namespace Zaehlwerk
         public override void Add(Component c)
         {
             _children.Add(c);
+            _childConcatinated = _childConcatinated.Concat(new []{c}).ToArray();
         }
 
-        public override List<Component[]>  GetNext(int depth)
+        public override IEnumerable<IEnumerable<object>> GetAll(int depth)
         {
-            Console.WriteLine(new String('-', depth) + name);
-            var entries = new List<Component[]>();
-            var comp = new List<Component>();
+            Console.WriteLine(new String('-', depth) + " OR " + name);
+            var entries = new List<List<object>>();
+            //var comp = new List<Component>();
             foreach (var child in _children)
-            {
-               foreach (var item in child.GetNext(depth + 2))                   
+            { 
+               var comp = new List<Component>();
+               foreach (var item in child.GetAll(depth + 2))                   
                {
-                  comp.AddRange(item);
+                   entries.Add(item.ToList());
                }
+               
             }
-            entries.Add(comp.ToArray());
+            
             return entries;
         }
     }

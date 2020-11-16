@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Zaehlwerk.Compositum;
 using Zaehlwerk.LinqExtension;
 using Zaehlwerk.Register;
@@ -45,48 +46,73 @@ namespace Zaehlwerk
 
         static void complex()
         {
-            // Create a tree structure
+            // Create a Base Level
 
-            CompositeAnd root = new CompositeAnd("root");
-            var firstParameter = "TestOr_Time";
-            var option1 = new Leaf(firstParameter, new Fact<object>(2880, "SimulationTime"));
-            var option2 = new Leaf(firstParameter, new Fact<object>(1440, "SimulationTime"));
+            CompositeAnd root = new CompositeAnd("Root");
+            var emvironmentName = "Environment";
+            var productionParameterName = "ProductionParameterName";
+            var productionParameter = new CompositeAnd(productionParameterName); 
+            var environment = new CompositeOr(emvironmentName);
+            root.Add(productionParameter);
+            root.Add(environment);
             
-            var secondParameter = "TestOr_Arrival";
-            var option3 = new Leaf(firstParameter, new Fact<object>(0.027, "OrderArrivalRate"));
-            var option4 = new Leaf(firstParameter, new Fact<object>(0.025, "OrderArrivalRate"));
+            // Start Environmnet 
 
-            var thirdParameter = "TestOr_Type";
-            var option5 = new Leaf(thirdParameter, new Fact<object>("Central", "SimType"));
-            var option6 = new Leaf(thirdParameter, new Fact<object>("Decentral", "SimType"));
-            var option7 = new Leaf(thirdParameter, new Fact<object>("Queued", "SimType"));
+            var prioRuleName = "Priorule";
+            var prioRule = new CompositeOr(prioRuleName);
+            prioRule.Add(new Leaf(prioRuleName, new Fact<object>("Schlupf", prioRuleName)));
+            prioRule.Add(new Leaf(prioRuleName, new Fact<object>("FiFo", prioRuleName)));
+            prioRule.Add(new Leaf(prioRuleName, new Fact<object>("KOZ", prioRuleName)));
 
-            CompositeOr alt_start_1 = new CompositeOr(firstParameter);
-            alt_start_1.Add(option1);
-            alt_start_1.Add(option2);
 
-            CompositeOr alt_start_2 = new CompositeOr(secondParameter);
-            alt_start_2.Add(option3);
-            alt_start_2.Add(option4);
+            var decentralName = "Dezentral";
+            var decentral = new CompositeAnd(decentralName);
+            decentral.Add(prioRule);
 
-            CompositeAnd andConnected = new CompositeAnd("TestAndConnector");
-            andConnected.Add(alt_start_1);
-            andConnected.Add(alt_start_2);
+            var losgroeseName = "Losgröße";
+            var losgroese = new CompositeOr(losgroeseName);
+            losgroese.Add(new Leaf(losgroeseName, new Fact<object>(1, losgroeseName)));
+            losgroese.Add(new Leaf(losgroeseName, new Fact<object>(5, losgroeseName)));
+            losgroese.Add(new Leaf(losgroeseName, new Fact<object>(10, losgroeseName)));
 
-            CompositeOr orConnected = new CompositeOr(thirdParameter);
-            orConnected.Add(option5);
-            orConnected.Add(option6);
-            orConnected.Add(option7);
+            var planningIntervalName = "Planungsintervall";
+            var planningInterval = new CompositeOr(planningIntervalName);
+            planningInterval.Add(new Leaf(planningIntervalName, new Fact<object>(8, planningIntervalName)));
+            planningInterval.Add(new Leaf(planningIntervalName, new Fact<object>(24, planningIntervalName)));
+
+            var centralName = "Zentral";
+            var central = new CompositeAnd(centralName);
+            central.Add(losgroese);
+            central.Add(planningInterval);
+
+            environment.Add(central);
+            environment.Add(decentral);
+
+            // End Environmnet 
+
+            // Start Production Parameter 
             
-            root.Add(andConnected);
-            root.Add(orConnected);
-            var items = root.GetNext(1);
+            var deadlineName = "Liefertermin";
+            var deadline = new CompositeOr(deadlineName);
+            deadline.Add(new Leaf(deadlineName, new Fact<object>(1, deadlineName)));
+            deadline.Add(new Leaf(deadlineName, new Fact<object>(5, deadlineName)));
+
+            var InterArivalTimeName = "Zwischenankunftszeit";
+            var InterArivalTime = new CompositeOr(InterArivalTimeName);
+            InterArivalTime.Add(new Leaf(InterArivalTimeName, new Fact<object>(0.025, InterArivalTimeName)));
+            InterArivalTime.Add(new Leaf(InterArivalTimeName, new Fact<object>(0.03, InterArivalTimeName)));
+
+            productionParameter.Add(deadline);
+            productionParameter.Add(InterArivalTime);
+
+            // End Production Parameter 
+
+            var items = root.GetAll(1);
 
             Console.WriteLine("Visited all nodes, Creating Parameter Sets");
 
-            var cartesianProduct = Cartesian.CartesianProduct<Object>(items);
 
-            foreach (var x1 in cartesianProduct)
+            foreach (var x1 in items)
             {
                 Console.WriteLine(JsonConvert.SerializeObject(x1));
             }

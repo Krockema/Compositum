@@ -12,7 +12,7 @@ namespace Zaehlwerk
         }
  
         public abstract void Add(Component c);
-        public abstract List<Component[]> GetNext(int depth);
+        public abstract IEnumerable<IEnumerable<object>> GetAll(int depth);
         public string Name()
         {
             return this.name;
