@@ -36,7 +36,6 @@ namespace Zaehlwerk
                }
                
             }
-            
             return entries;
         }
     }

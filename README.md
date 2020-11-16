@@ -2,6 +2,7 @@
 
 [Compositum on Wikipedia](https://de.wikipedia.org/wiki/Kompositum_(Entwurfsmuster))
 ![](https://upload.wikimedia.org/wikipedia/commons/a/aa/Kompositum_Klassen.svg)
+**Fig 2** Compositum Class.
 
 * simple(); 
   * Connected Objects, recursive yield Enumeration
@@ -16,3 +17,5 @@
 * complex();
   * OR as well as AND Connected Composites 
   * Combining the Cartesian and the recursive walk through the composite
+  * ![](ExperimentTree.png)
+    **Fig 2** Experiment Tree Visualized.
