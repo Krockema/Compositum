@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using Newtonsoft.Json;
 using Zaehlwerk.LinqExtension;
 
 namespace Zaehlwerk
@@ -10,7 +8,6 @@ namespace Zaehlwerk
     class CompositeAnd : Component
 
     {
-        private Component[] _childConcatinated = new Component[0];
         private List<Component> _children = new List<Component>();
         // Constructor
 
@@ -22,7 +19,6 @@ namespace Zaehlwerk
         public override void Add(Component c)
         {
             _children.Add(c);
-            _childConcatinated = _childConcatinated.Concat(new []{c}).ToArray();
         }
 
         public override IEnumerable<IEnumerable<object>>  GetAll(int depth)

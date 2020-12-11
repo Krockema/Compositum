@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Text.Json;
 using Zaehlwerk.Compositum;
 using Zaehlwerk.LinqExtension;
 using Zaehlwerk.Register;
@@ -28,7 +27,7 @@ namespace Zaehlwerk
 
             foreach (var item in v3.GetNext())
             {
-                Console.WriteLine(JsonConvert.SerializeObject(item));
+                Console.WriteLine(JsonSerializer.Serialize(item));
             }
 
             Console.ReadKey();
@@ -39,7 +38,7 @@ namespace Zaehlwerk
             Counter counter = new Counter(new int[] {2, 4, 3, 6});
             while (counter.hasNext())
             {
-                Console.WriteLine(JsonConvert.SerializeObject(counter.getNext()));
+                Console.WriteLine(JsonSerializer.Serialize(counter.getNext()));
             }
             Console.ReadKey();
         }
@@ -114,7 +113,7 @@ namespace Zaehlwerk
 
             foreach (var x1 in items)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(x1));
+                Console.WriteLine(JsonSerializer.Serialize(x1));
             }
             
  
@@ -146,7 +145,7 @@ namespace Zaehlwerk
             var cartesianProduct = Cartesian.CartesianProduct<Object>(chilren);
             foreach (var x1 in cartesianProduct)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(x1));
+                Console.WriteLine(JsonSerializer.Serialize(x1));
             }
         }
     }
