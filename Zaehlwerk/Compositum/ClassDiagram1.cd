@@ -3,7 +3,7 @@
   <Class Name="Zaehlwerk.Compositum.Component">
     <Position X="7" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAgAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Compositum\Component.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -13,8 +13,8 @@
       <Path>
         <Point X="5" Y="4" />
         <Point X="4.625" Y="4" />
-        <Point X="4.625" Y="1.816" />
-        <Point X="7" Y="1.816" />
+        <Point X="4.625" Y="1.72" />
+        <Point X="7" Y="1.72" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -28,21 +28,21 @@
   <Class Name="Zaehlwerk.Compositum.CompositeAnd">
     <Position X="7.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Compositum\CompositeAnd.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zaehlwerk.Compositum.CompositeOr">
     <Position X="3" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Compositum\CompositeOr.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Zaehlwerk.Compositum.Leaf&lt;T&gt;">
     <Position X="9.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Compositum\Leaf.cs</FileName>
     </TypeIdentifier>
   </Class>

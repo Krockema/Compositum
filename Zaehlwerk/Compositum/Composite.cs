@@ -13,7 +13,7 @@ namespace Zaehlwerk.Compositum
             : base(name)
         {
         }
-        public override void Add(Component c)
+        public void Add(Component c)
         {
             Children.Add(c);
         }

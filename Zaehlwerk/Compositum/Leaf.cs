@@ -16,11 +16,6 @@ namespace Zaehlwerk.Compositum
         {
             Value = value;
         }
- 
-        public override void Add(Component c)
-        {
-            // not possible to add more to a leave
-        }
 
         public override IEnumerable<IEnumerable<object>> GetEnumerableMember(int depth)
         {

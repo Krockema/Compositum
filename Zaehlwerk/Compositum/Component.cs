@@ -10,7 +10,6 @@ namespace Zaehlwerk.Compositum
         {
             this.name = name;
         }
-        public abstract void Add(Component c);
         public abstract IEnumerable<IEnumerable<object>> GetEnumerableMember(int depth);
         public string Name()
         {

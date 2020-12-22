@@ -12,11 +12,6 @@ namespace Zaehlwerk.Compositum
             : base(name)
         {
         }
-        public override void Add(Component c)
-        {
-            Children.Add(c);
-        }
-
         public CompositeOr(string name, dynamic array)
             : base(name)
         {
