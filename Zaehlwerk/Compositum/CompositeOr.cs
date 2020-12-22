@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Zaehlwerk
+namespace Zaehlwerk.Compositum
 {
-    class CompositeOr : Component
+    class CompositeOr : Composite
 
     {
-        private List<Component> _children = new List<Component>();
         // Constructor
         public CompositeOr(string name)
             : base(name)
@@ -15,18 +14,24 @@ namespace Zaehlwerk
         }
         public override void Add(Component c)
         {
-            _children.Add(c);
+            Children.Add(c);
         }
 
-        public override IEnumerable<IEnumerable<object>> GetAll(int depth)
+        public CompositeOr(string name, dynamic array)
+            : base(name)
+        {
+            this.Add(array);
+        }
+
+        public override IEnumerable<IEnumerable<object>> GetEnumerableMember(int depth)
         {
             Console.WriteLine(new String('-', depth) + " OR " + name);
             var entries = new List<List<object>>();
             //var comp = new List<Component>();
-            foreach (var child in _children)
+            foreach (var child in Children)
             { 
                var comp = new List<Component>();
-               foreach (var item in child.GetAll(depth + 2))                   
+               foreach (var item in child.GetEnumerableMember(depth + 2))                   
                {
                    entries.Add(item.ToList());
                }

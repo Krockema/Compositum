@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Zaehlwerk
-{ abstract class Component
-
+namespace Zaehlwerk.Compositum
+{ 
+    abstract class Component
     {
         protected string name;
         // Constructor
@@ -10,9 +10,8 @@ namespace Zaehlwerk
         {
             this.name = name;
         }
- 
         public abstract void Add(Component c);
-        public abstract IEnumerable<IEnumerable<object>> GetAll(int depth);
+        public abstract IEnumerable<IEnumerable<object>> GetEnumerableMember(int depth);
         public string Name()
         {
             return this.name;

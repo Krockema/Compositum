@@ -48,87 +48,55 @@ namespace Zaehlwerk
             // Create a Base Level
 
             CompositeAnd root = new CompositeAnd("Root");
-            var emvironmentName = "Environment";
-            var productionParameterName = "ProductionParameterName";
-            var productionParameter = new CompositeAnd(productionParameterName); 
-            var environment = new CompositeOr(emvironmentName);
+            var productionParameter = new CompositeAnd("ProductionParameterName");
+            var environment = new CompositeOr("Environment");
             root.Add(productionParameter);
             root.Add(environment);
-            
+
             // Start Environmnet 
+            var priorityRule = new CompositeOr("Priorule", new [] { "Schlupf", "FiFo", "KoZ" });
+            var decentral = new CompositeAnd( "Dezentral");
+            decentral.Add(priorityRule);
 
-            var prioRuleName = "Priorule";
-            var prioRule = new CompositeOr(prioRuleName);
-            prioRule.Add(new Leaf(prioRuleName, new Fact<object>("Schlupf", prioRuleName)));
-            prioRule.Add(new Leaf(prioRuleName, new Fact<object>("FiFo", prioRuleName)));
-            prioRule.Add(new Leaf(prioRuleName, new Fact<object>("KOZ", prioRuleName)));
-
-
-            var decentralName = "Dezentral";
-            var decentral = new CompositeAnd(decentralName);
-            decentral.Add(prioRule);
-
-            var losgroeseName = "Losgröße";
-            var losgroese = new CompositeOr(losgroeseName);
-            losgroese.Add(new Leaf(losgroeseName, new Fact<object>(1, losgroeseName)));
-            losgroese.Add(new Leaf(losgroeseName, new Fact<object>(5, losgroeseName)));
-            losgroese.Add(new Leaf(losgroeseName, new Fact<object>(10, losgroeseName)));
-
-            var planningIntervalName = "Planungsintervall";
-            var planningInterval = new CompositeOr(planningIntervalName);
-            planningInterval.Add(new Leaf(planningIntervalName, new Fact<object>(8, planningIntervalName)));
-            planningInterval.Add(new Leaf(planningIntervalName, new Fact<object>(24, planningIntervalName)));
-
-            var centralName = "Zentral";
-            var central = new CompositeAnd(centralName);
-            central.Add(losgroese);
+            var lotsize = new CompositeOr("Losgroesse", new [] { 1, 5, 10 });
+            var planningInterval = new CompositeOr("Planungsintervall");
+            planningInterval.Add(from: 8,to: 24, interval: 16);
+            
+            var central = new CompositeAnd("Zentral");
+            central.Add(lotsize);
             central.Add(planningInterval);
 
             environment.Add(central);
             environment.Add(decentral);
-
             // End Environmnet 
 
             // Start Production Parameter 
+            var deadline = new CompositeOr("Liefertermin", new [] {3, 5});
+            var interArrivalTime = new CompositeOr("Zwischenankunftszeit", new [] { 0.025, 0.03});
             
-            var deadlineName = "Liefertermin";
-            var deadline = new CompositeOr(deadlineName);
-            deadline.Add(new Leaf(deadlineName, new Fact<object>(1, deadlineName)));
-            deadline.Add(new Leaf(deadlineName, new Fact<object>(5, deadlineName)));
-
-            var InterArivalTimeName = "Zwischenankunftszeit";
-            var InterArivalTime = new CompositeOr(InterArivalTimeName);
-            InterArivalTime.Add(new Leaf(InterArivalTimeName, new Fact<object>(0.025, InterArivalTimeName)));
-            InterArivalTime.Add(new Leaf(InterArivalTimeName, new Fact<object>(0.03, InterArivalTimeName)));
-
             productionParameter.Add(deadline);
-            productionParameter.Add(InterArivalTime);
-
+            productionParameter.Add(interArrivalTime);
             // End Production Parameter 
 
-            var items = root.GetAll(1);
-
+            var items = root.GetEnumerableMember(depth: 1);
             Console.WriteLine("Visited all nodes, Creating Parameter Sets");
 
-
+            var count = 0;
             foreach (var x1 in items)
             {
-                Console.WriteLine(JsonSerializer.Serialize(x1));
+                Console.WriteLine(JsonSerializer.Serialize(x1)); // To print one Line per Configuration 
+                count++;
             }
-            
- 
-            Console.WriteLine("Done");
+             
+            Console.WriteLine("Done; " + count + " possible configurations found!");
             // Wait for user
-
             Console.ReadKey(); 
         }
 
         static void linqy()
         {
             
-            object[] emty = { };
-
-            Fact<int>[] letters = { new Fact<int>(2, ""),  new Fact<int>(6, ""), new Fact<int>(3, "") };
+            object[] letters = { new Leaf<int>("", 2),  new Leaf<int>("", 6), new Leaf<int>("", 8)  };
             
             int[] numbers = { 1, 2, 3, 4 };
             

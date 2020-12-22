@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Zaehlwerk.Compositum;
 
-namespace Zaehlwerk
+namespace Zaehlwerk.Compositum
 {
-    class Leaf : Component
-
+    class Leaf<T> : Component
     {
         // Constructor
-        public Fact<object> _fact { get; private set; }
+        public T Value { get; private set; }
+        public string Name => base.Name();
 
-        public Leaf(string name, Fact<object> fact)
-            : base(name)
+        public Leaf(string name, T value) 
+            : base(name) 
         {
-            _fact = fact;
+            Value = value;
         }
  
         public override void Add(Component c)
@@ -21,9 +20,9 @@ namespace Zaehlwerk
             // not possible to add more to a leave
         }
 
-        public override IEnumerable<IEnumerable<object>> GetAll(int depth)
+        public override IEnumerable<IEnumerable<object>> GetEnumerableMember(int depth)
         {
-            Console.WriteLine(new String('-', depth) + _fact.Value);
+            Console.WriteLine(new String('-', depth) + " value: " + Value.ToString() );
             return new List<Component[]>() { new []{ this } };
         }
     }

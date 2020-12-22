@@ -3,32 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using Zaehlwerk.LinqExtension;
 
-namespace Zaehlwerk
+namespace Zaehlwerk.Compositum
 {
-    class CompositeAnd : Component
+    class CompositeAnd : Composite
 
     {
-        private List<Component> _children = new List<Component>();
-        // Constructor
-
         public CompositeAnd(string name)
             : base(name)
         {
         }
-
-        public override void Add(Component c)
+        public CompositeAnd(string name, dynamic array)
+            : base(name)
         {
-            _children.Add(c);
+            this.Add(array);
         }
 
-        public override IEnumerable<IEnumerable<object>>  GetAll(int depth)
+        public override IEnumerable<IEnumerable<object>>  GetEnumerableMember(int depth)
         {
             Console.WriteLine(new String('-', depth) + " AND " + name);
             var combination = new List<List<object>>();
-            foreach (var concat in _children)
+            foreach (var concat in Children)
             {
                 var entries = new List<object>();
-                foreach (var elements in concat.GetAll(depth + 2))
+                foreach (var elements in concat.GetEnumerableMember(depth + 2))
                 {
                     entries.Add(elements.ToList());
                 }

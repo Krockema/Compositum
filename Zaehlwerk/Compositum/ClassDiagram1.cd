@@ -1,2 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Zaehlwerk.Compositum.Component">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAgAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compositum\Component.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zaehlwerk.Compositum.Composite">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <AssociationLine Name="Children" Type="Zaehlwerk.Compositum.Component" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="4" />
+        <Point X="4.625" Y="4" />
+        <Point X="4.625" Y="1.816" />
+        <Point X="7" Y="1.816" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAgAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compositum\Composite.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Children" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Zaehlwerk.Compositum.CompositeAnd">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compositum\CompositeAnd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zaehlwerk.Compositum.CompositeOr">
+    <Position X="3" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Compositum\CompositeOr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zaehlwerk.Compositum.Leaf&lt;T&gt;">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Compositum\Leaf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
