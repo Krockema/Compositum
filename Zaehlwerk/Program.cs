@@ -82,6 +82,7 @@ namespace Zaehlwerk
             Console.WriteLine("Visited all nodes, Creating Parameter Sets");
 
             var count = 0;
+            
             foreach (var x1 in items)
             {
                 Console.WriteLine(JsonSerializer.Serialize(x1)); // To print one Line per Configuration 

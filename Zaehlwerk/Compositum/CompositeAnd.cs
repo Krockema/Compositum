@@ -32,13 +32,8 @@ namespace Zaehlwerk.Compositum
                 combination.Add(entries);
 
             }
-            var returns = BuildCartesian(combination);
+            var returns = Cartesian.CartesianProduct(combination);
             return returns;
-        }
-
-        private IEnumerable<IEnumerable<object>> BuildCartesian(List<List<object>> items)
-        {
-            return Cartesian.CartesianProduct<Object>(items);
         }
     }
 }

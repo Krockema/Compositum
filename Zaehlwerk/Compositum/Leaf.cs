@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Zaehlwerk.Compositum
 {
+    [DebuggerDisplay("{Name}:{Value}")]
     class Leaf<T> : Component
     {
         // Constructor
-        public T Value { get; private set; }
-        public string Name => base.Name();
+        public T Value { get; private set; } // Can store any Object
+        public new string Name => base.Name(); // Required for Json Output
 
         public Leaf(string name, T value) 
             : base(name) 
