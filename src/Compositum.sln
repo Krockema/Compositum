@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaehlwerk", "Zaehlwerk\Zaehlwerk.csproj", "{6FF92D8B-6FD1-4F5C-B2D3-B03A4F38FBED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compositum", "Compositum\Compositum.csproj", "{6FF92D8B-6FD1-4F5C-B2D3-B03A4F38FBED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compositum.Database", "Compositum.Database\Compositum.Database.csproj", "{E21FBD3A-FA39-4DF9-9AFA-90FD075B9A1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6FF92D8B-6FD1-4F5C-B2D3-B03A4F38FBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FF92D8B-6FD1-4F5C-B2D3-B03A4F38FBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FF92D8B-6FD1-4F5C-B2D3-B03A4F38FBED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E21FBD3A-FA39-4DF9-9AFA-90FD075B9A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E21FBD3A-FA39-4DF9-9AFA-90FD075B9A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E21FBD3A-FA39-4DF9-9AFA-90FD075B9A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E21FBD3A-FA39-4DF9-9AFA-90FD075B9A1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

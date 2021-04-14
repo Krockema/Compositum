@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Zaehlwerk.LinqExtension;
+using Compositum.LinqExtension;
 
-namespace Zaehlwerk.Compositum
+namespace Compositum.Compositum
 {
     class CompositeAnd : Composite
 
@@ -21,16 +20,15 @@ namespace Zaehlwerk.Compositum
         public override IEnumerable<IEnumerable<object>>  GetEnumerableMember(int depth)
         {
             Console.WriteLine(new String('-', depth) + " AND " + name);
-            var combination = new List<List<object>>();
+            var combination = new List<IEnumerable<object>>();
             foreach (var concat in Children)
             {
                 var entries = new List<object>();
                 foreach (var elements in concat.GetEnumerableMember(depth + 2))
                 {
-                    entries.Add(elements.ToList());
+                    entries.Add(elements);
                 }
                 combination.Add(entries);
-
             }
             var returns = Cartesian.CartesianProduct(combination);
             return returns;

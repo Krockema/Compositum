@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zaehlwerk.Compositum
+namespace Compositum.Compositum
 { 
     abstract class Component
     {

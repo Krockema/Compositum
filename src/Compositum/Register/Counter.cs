@@ -1,4 +1,4 @@
-﻿namespace Zaehlwerk.Register
+﻿namespace Compositum.Register
 {
     public class Counter {
  

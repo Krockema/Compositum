@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace Zaehlwerk.Compositum
+namespace Compositum.Compositum
 {
     class CompositeOr : Composite
 
@@ -21,16 +20,13 @@ namespace Zaehlwerk.Compositum
         public override IEnumerable<IEnumerable<object>> GetEnumerableMember(int depth)
         {
             Console.WriteLine(new String('-', depth) + " OR " + name);
-            var entries = new List<List<object>>();
-            //var comp = new List<Component>();
+            var entries = new List<IEnumerable<object>>();
             foreach (var child in Children)
             { 
-               var comp = new List<Component>();
                foreach (var item in child.GetEnumerableMember(depth + 2))                   
                {
-                   entries.Add(item.ToList());
+                   entries.Add(item);
                }
-               
             }
             return entries;
         }

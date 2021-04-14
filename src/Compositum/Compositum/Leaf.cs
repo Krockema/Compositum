@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Zaehlwerk.Compositum
+namespace Compositum.Compositum
 {
     [DebuggerDisplay("{Name}:{Value}")]
     class Leaf<T> : Component

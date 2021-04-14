@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zaehlwerk
+namespace Compositum
 {
     public class Vector
     {
