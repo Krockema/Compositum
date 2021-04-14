@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Compositum.LinqExtension;
 
-namespace Compositum.Compositum
+namespace Compositum.SubTypes
 {
     class CompositeAnd : Composite
 

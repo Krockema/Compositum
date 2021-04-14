@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Compositum.Compositum
+namespace Compositum.SubTypes
 {
     [DebuggerDisplay("{Name}:{Value}")]
     class Leaf<T> : Component

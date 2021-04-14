@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Compositum.Compositum;
 using Compositum.Database;
 using Compositum.Database.Tables;
 using Compositum.LinqExtension;
 using Compositum.Register;
+using Compositum.SubTypes;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Compositum
@@ -35,7 +35,7 @@ namespace Compositum
             // seed Created Database with one model.
             CompositeDb.DbSeed(compositeDb);
 
-            Console.WriteLine("/* ----------------------------------------------------");
+            Console.WriteLine("\r\n/* ----------------------------------------------------");
             Console.WriteLine("----  retrieve the data from database -----------------");
             Console.WriteLine("-----------------------------------------------------*/");
             Console.WriteLine("");
@@ -43,14 +43,14 @@ namespace Compositum
             compositeDb.GetStructureRecursively(start, start.Id).Wait();
             start.Print();
 
-            Console.WriteLine("/* ----------------------------------------------------");
+            Console.WriteLine("\r\n/* ----------------------------------------------------");
             Console.WriteLine("----  split alternatives into two separate tree's -----");
             Console.WriteLine("-----------------------------------------------------*/");
             Console.WriteLine("");
             var alternatives = start.GetEnumerableMember(1);
 
 
-            Console.WriteLine("/* ----------------------------------------------------");
+            Console.WriteLine("\r\n/* ----------------------------------------------------");
             Console.WriteLine("----  walk through each alternatives ------------------");
             Console.WriteLine("-----------------------------------------------------*/");
             Console.WriteLine("");

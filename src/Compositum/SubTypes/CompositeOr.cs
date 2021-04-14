@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Compositum.Compositum
+namespace Compositum.SubTypes
 {
     class CompositeOr : Composite
 
